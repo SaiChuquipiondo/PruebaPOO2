@@ -10,7 +10,7 @@
     <servlet-name>AutoresController</servlet-name>
     <url-pattern>/AutoresController</url-pattern>
   </servlet-mapping>
-  <display-name>Prueba</display-name>
+  <display-name>Prueba18</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>

@@ -1,7 +1,6 @@
 package com.controller;
 
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -49,7 +48,7 @@ public class AutorControllers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		processRequest(request, response);
 	}
 
 	/**
@@ -57,7 +56,7 @@ public class AutorControllers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		processRequest(request, response);
 	}
 	
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
@@ -67,7 +66,7 @@ public class AutorControllers extends HttpServlet {
 			Iterator<Autor> it = modelo.ListarAutores().iterator();
 			while(it.hasNext()) {
 				Autor a = it.next();
-				System.out.println(a.getId()+" "+a.getNombre()+" "+);
+				System.out.println(a.getId()+" "+a.getNombre()+" "+a.getPais());
 			}
 			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 		}catch (ServletException | IOException ex) {

@@ -1,3 +1,4 @@
+
 <%@page import="com.beans.Autor"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,7 +10,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id = "tabla">
+<table id = "tabla" border="2">
 	<thead>
 		<tr>
 			<th>Codigo del autor</th>
