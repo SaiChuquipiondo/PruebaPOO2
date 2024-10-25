@@ -35,7 +35,13 @@ public class AutorControllers extends HttpServlet {
 			break;
 		case "nuevo":
 			request.getRequestDispatcher("/autores/NuevoAutor.jsp").forward(request, response);
+			break;
+			
+		case "insertar":
+			insertar(request,response);
+			break;
 		}
+		
 		
 			
 		}
@@ -77,5 +83,18 @@ public class AutorControllers extends HttpServlet {
 		}
 		
 	}
+	private void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Autor miAutor = new Autor();
+			miAutor.setNombre(request.getParameter("nombre"));
+			miAutor.setPais(request.getParameter("nacionalidad"));
+			i
+			
+		} catch (ServletException | IOException ex) {
+			ex.getStackTrace();
+		}
+	}
+	
+
 
 }
