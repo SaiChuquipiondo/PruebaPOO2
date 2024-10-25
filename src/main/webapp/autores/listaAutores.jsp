@@ -10,7 +10,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-<table id = "tabla" border="2">
+
+	<% String url = "http://localhost:8080/Prueba18/";%> 
+	<a type = "button" href = "<%= url %>AutorControllers?op=nuevo">Nuevo Autor</a>
+<table id = "tabla" border="1">
 	<thead>
 		<tr>
 			<th>Codigo del autor</th>

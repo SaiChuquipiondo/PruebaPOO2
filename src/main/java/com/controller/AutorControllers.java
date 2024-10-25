@@ -33,6 +33,8 @@ public class AutorControllers extends HttpServlet {
 			listar(request, response);
 			
 			break;
+		case "nuevo":
+			request.getRequestDispatcher("/autores/NuevoAutor.jsp").forward(request, response);
 		}
 		
 			
@@ -68,6 +70,7 @@ public class AutorControllers extends HttpServlet {
 				Autor a = it.next();
 				System.out.println(a.getId()+" "+a.getNombre()+" "+a.getPais());
 			}
+			
 			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 		}catch (ServletException | IOException ex) {
 			Logger.getLogger(AutoresModel.class.getName()).log(Level.SEVERE,null,ex);
