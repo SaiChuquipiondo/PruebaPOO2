@@ -6,6 +6,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -40,6 +41,9 @@ public class AutorControllers extends HttpServlet {
 		case "insertar":
 			insertar(request,response);
 			break;
+		case "obtener":
+			obtener(request, response);
+			break;
 		}
 		
 		
@@ -70,27 +74,44 @@ public class AutorControllers extends HttpServlet {
 	private void listar(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			request.setAttribute("listaAutores", modelo.ListarAutores());
-			
-			Iterator<Autor> it = modelo.ListarAutores().iterator();
-			while(it.hasNext()) {
-				Autor a = it.next();
-				System.out.println(a.getId()+" "+a.getNombre()+" "+a.getPais());
-			}
-			
 			request.getRequestDispatcher("/autores/listaAutores.jsp").forward(request, response);
 		}catch (ServletException | IOException ex) {
 			Logger.getLogger(AutoresModel.class.getName()).log(Level.SEVERE,null,ex);
 		}
 		
 	}
-	private void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+	private void obtener(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			String id = request.getParameter("id");
+			Autor miAutor = modelo.obtenerAutor(Integer.parseInt(id));
+			if(miAutor!=null) {
+				request.setAttribute("autor", miAutor);
+				request.getRequestDispatcher("/autores/editarAutores.jsp").forward(request, response);
+			}else {
+				response.sendRedirect(request.getContextPath()+"/error404.jsp");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+
+	private void insertar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		try {
 			Autor miAutor = new Autor();
 			miAutor.setNombre(request.getParameter("nombre"));
 			miAutor.setPais(request.getParameter("nacionalidad"));
-			i
+			if (modelo.insertarAutor(miAutor)>0) {
+				request.getSession().setAttribute("exito", "Autor registrado exitoso");
+			}else {
+				request.getSession().setAttribute("fracaso", "Autor no registrado");
+			}
+			response.sendRedirect(request.getContextPath()+"/AutorControllers?op=listar");
 			
-		} catch (ServletException | IOException ex) {
+			
+		} catch (Exception ex) {
 			ex.getStackTrace();
 		}
 	}
