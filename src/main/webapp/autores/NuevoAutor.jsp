@@ -13,11 +13,25 @@
 	<h3>Nuevo Autor</h3>
 	<form role="form" action="<%=url%>AutorControllers" method="POST">
 		<input type="hidden" name="op" value="insertar" /> <label for="nombre">
-			Nombre del Autor</label> <br> <input type="text" name="nombre" id="nombre" /> <br>
-			
+			Nombre del Autor</label> <br> 
+			<div class="input-class">
+			<input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingrese su nombre" />
+			<span class="input-class-addon"><span class="glyphicon-asterisk"></span></span> 
+			</div>
+			<br>
+			<div class="form-group">
 			<label
-			for="nacionalidad"> Nacionalidad del Autor</label> <br> <input type="text"
-			name="nacionalidad" id="nacionalidad" /><br> <input type="submit"
+			for="nacionalidad"> Nacionalidad del Autor</label>
+			 <br> 
+			 <div class="input-group">
+			 <input type="text" class="form-control"
+			name="nacionalidad" id="nacionalidad" placeholder="Ingrese su nacionalidad" />
+			<span class="input-group-addon"><span
+					class="glyphicon glyphicon-asterisk"></span></span>
+ 
+			</div>
+			</div>
+			<input type="submit"
 			value="Guardar" name="Guardar">  <a
 			href="<%=url%>AutorControllers?op=listar">Retorno</a>
 	</form>

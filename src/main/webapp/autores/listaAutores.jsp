@@ -34,7 +34,8 @@
 				<td><%= autor.getNombre() %></td>
 				<td><%= autor.getPais() %></td>
 				<td>
-				<a href = "<%= url %>AutorControllers?op=obtner&id=<%=autor.getId()%>">Modificar</a>	
+				<a href = "<%= url %>AutorControllers?op=obtener&id=<%=autor.getId()%>">Modificar</a>
+				<a href = "<%= url %>AutorControllers?op=eliminar&id=<%=autor.getId()%>">Eliminar</a>		
 				</td>		
 		</tr>
 	<%

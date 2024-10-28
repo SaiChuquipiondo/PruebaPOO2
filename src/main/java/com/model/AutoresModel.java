@@ -77,12 +77,12 @@ public class AutoresModel extends Conexion{
 			String sql = "CALL sp_obtenerAutor(?)";
 			this.abrirConexion();
 			cs=conexion.prepareCall(sql);
-			cs.setInt(idAutor, idAutor);
+			cs.setInt(1, idAutor);
+			rs=cs.executeQuery();
 			if(rs.next()) {
 				autor.setId(rs.getInt("idAutor"));
 				autor.setNombre(rs.getString("nombre"));
-				autor.setPais(rs.getString("nacionalidad"));
-				this.cerrarConexion();
+				autor.setPais(rs.getString("nacionalidad"));			
 			}
 		} catch (Exception e) {
 			this.cerrarConexion();
@@ -108,5 +108,27 @@ public class AutoresModel extends Conexion{
 			this.cerrarConexion();
 			return 0;
 		}	
+	}
+	
+	public int totalAutores() {
+		try {
+			int totalAutores = 0;
+			String sql = "CALL sp_totalAutores()";
+			this.abrirConexion();
+			
+			cs=conexion.prepareCall(sql);
+			rs= cs.executeQuery();
+			while(rs.next()) {
+				totalAutores=rs.getInt("totalAutores");
+				
+			}
+			this.cerrarConexion();
+			return totalAutores;
+		} catch (Exception e) {
+			this.cerrarConexion();
+			e.printStackTrace();
+			return 0;
+		}
+		
 	}
 }

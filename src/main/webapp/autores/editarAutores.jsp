@@ -20,18 +20,21 @@
 	}
 	
 	%>
-	<h3>Nuevo Autor</h3>
+	<h1><em><strong>EDITAR AUTOR</strong></em></h1>
 	<form role="form" action="<%=url%>AutorControllers" method="POST">
-		<input type="hidden" name="op" value="modificar" /> 
+	
+		<input type="hidden" name="op" value="editar" /> 
 		<input type="hidden" name="id" value="<%= autor.getId() %>" /> 
 		<label for="nombre">
-			Nombre del Autor</label> <br> <input type="text" name="nombre" id="nombre" value="<%= autor.getNombre() %>" /> <br>
-			
-			<label
-			for="nacionalidad"> Nacionalidad del Autor</label> <br> <input type="text"
-			name="nacionalidad" id="nacionalidad" values = "<%=autor.getPais() %>"/><br> <input type="submit"
-			value="Guardar" name="Guardar">  <a
-			href="<%=url%>AutorControllers?op=listar">Retorno</a>
+			Nombre del Autor</label> <br> 
+			<input type="text" name="nombre" id="nombre" value="<%= autor.getNombre() %>" /> <br>
+		<label for="nacionalidad">
+				 Nacionalidad del Autor</label> <br>
+		 <input type="text" name="nacionalidad" id="nacionalidad" value = "<%=autor.getPais() %>"/><br> 
+		 
+		 <input type="submit" class="btn btn-info"
+			value="Editar" name="Guardar">  <a class="btn btn-danger"
+			href="<%=url%>AutorControllers?op=listar">CANCELAR</a>
 	</form>
 
 </body>

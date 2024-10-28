@@ -22,8 +22,6 @@ public class AutorControllers extends HttpServlet {
        
 	AutoresModel modelo = new AutoresModel();
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		response.setContentType("text/html;charset=UTF-8");
-		try(PrintWriter out = response.getWriter()){
 		if(request.getParameter("op")==null) {
 			listar(request,response);
 			return;
@@ -44,12 +42,15 @@ public class AutorControllers extends HttpServlet {
 		case "obtener":
 			obtener(request, response);
 			break;
-		}
-		
-		
-			
+		case "editar":
+			editar(request, response);
+			break;
+		case "eliminar":
+			eliminar(request, response);
+			break;
 		}
 	}
+	
     public AutorControllers() {
         super();
         // TODO Auto-generated constructor stub
@@ -81,17 +82,57 @@ public class AutorControllers extends HttpServlet {
 		
 	}
 	
+	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			Autor miAutor = new Autor();
+			miAutor.setId(Integer.parseInt(request.getParameter("id")));
+			miAutor.setNombre(request.getParameter("nombre"));
+			miAutor.setPais(request.getParameter("nacionalidad"));
+			
+			if (modelo.modificarAutor(miAutor)>0) {
+				request.getSession().setAttribute("exito", "Autor modificado exitoso");
+				System.out.println("modificado exitoso");
+			}else {
+				request.getSession().setAttribute("fracaso", "Autor no modificado");
+				System.out.println("no modificado");
+			}
+			response.sendRedirect(request.getContextPath()+"/AutorControllers?op=listar");
+			System.out.println("modificar: "+modelo.modificarAutor(miAutor));
+			
+		} catch (Exception ex) {
+			ex.getStackTrace();
+		}
+		
+	}
+	private void eliminar(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			int idAutor = Integer.parseInt(request.getParameter("id"));
+			if (modelo.eliminarAutor(idAutor)>0) {
+				request.getSession().setAttribute("exito", "Autor eliminado exitoso");
+				System.out.println("eliminado exitoso");
+			}else {
+				request.getSession().setAttribute("fracaso", "Autor no eliminado");
+				System.out.println("no elimando");
+			}
+			response.sendRedirect(request.getContextPath()+"/AutorControllers?op=listar");
+			
+		} catch (Exception ex) {
+			ex.getStackTrace();
+		}
+		
+	}
+	
 	private void obtener(HttpServletRequest request, HttpServletResponse response) {
 		try {
 			String id = request.getParameter("id");
 			Autor miAutor = modelo.obtenerAutor(Integer.parseInt(id));
+
 			if(miAutor!=null) {
 				request.setAttribute("autor", miAutor);
 				request.getRequestDispatcher("/autores/editarAutores.jsp").forward(request, response);
 			}else {
 				response.sendRedirect(request.getContextPath()+"/error404.jsp");
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
