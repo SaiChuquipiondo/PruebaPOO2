@@ -4,10 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>HolaC</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h1>HolaComoEstas</h1>
+
+
+	
+	<%@ include file="/cabecera.jsp" %>
+	
+	
 
 </body>
 </html>

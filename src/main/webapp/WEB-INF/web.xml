@@ -39,4 +39,34 @@
     <servlet-name>AutorControllers</servlet-name>
     <url-pattern>/AutorControllers</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditorialControllers</display-name>
+    <servlet-name>EditorialControllers</servlet-name>
+    <servlet-class>com.controller.EditorialControllers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditorialControllers</servlet-name>
+    <url-pattern>/EditorialControllers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GeneroControllers</display-name>
+    <servlet-name>GeneroControllers</servlet-name>
+    <servlet-class>com.controller.GeneroControllers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GeneroControllers</servlet-name>
+    <url-pattern>/GeneroControllers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LibroControllers</display-name>
+    <servlet-name>LibroControllers</servlet-name>
+    <servlet-class>com.controller.LibroControllers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LibroControllers</servlet-name>
+    <url-pattern>/LibroControllers</url-pattern>
+  </servlet-mapping>
 </web-app>

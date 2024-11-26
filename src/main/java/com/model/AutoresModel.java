@@ -15,7 +15,7 @@ public class AutoresModel extends Conexion{
 		
 		try {
 			List<Autor> lista = new ArrayList<>();
-			String sql = "CALL sp_listarAutor()";
+			String sql = "CALL sp_listarAutores()";
 			this.abrirConexion();
 			cs = conexion.prepareCall(sql);
 			rs = cs.executeQuery();
